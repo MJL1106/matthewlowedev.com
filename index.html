@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Matthew Lowe | Engineering and Operations Director at Veyra</title>
-<meta name="description" content="Matthew Lowe, Co-owner and Engineering and Operations Director at Veyra. Full-stack developer building games, apps and the systems behind them.">
+<meta name="description" content="A full-stack developer who cares about the business as much as the code. I find the slow, manual parts of a business and build the systems that take them away.">
 <meta name="theme-color" content="#f5f1e8">
 <link rel="canonical" href="https://matthewlowedev.com/">
 <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Matthew Lowe">
 <meta property="og:url" content="https://matthewlowedev.com/">
 <meta property="og:title" content="Matthew Lowe | Engineering and Operations Director at Veyra">
-<meta property="og:description" content="Full-stack developer building games, apps and the systems behind them. Co-owner of Veyra, a cognitive assessment platform for schools.">
+<meta property="og:description" content="A full-stack developer who cares about the business as much as the code. I find the slow, manual parts of a business and build the systems that take them away.">
 <meta property="og:image" content="https://matthewlowedev.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Matthew Lowe | Engineering and Operations Director at Veyra">
-<meta name="twitter:description" content="Full-stack developer building games, apps and the systems behind them. Co-owner of Veyra, a cognitive assessment platform for schools.">
+<meta name="twitter:description" content="A full-stack developer who cares about the business as much as the code. I find the slow, manual parts of a business and build the systems that take them away.">
 <meta name="twitter:image" content="https://matthewlowedev.com/assets/og-image.png">
 <script>
 (() => {
@@ -235,9 +235,10 @@ main { min-height: calc(100vh - var(--nav-h)); }
 .hero { padding: clamp(56px, 8vw, 112px) 0 clamp(64px, 8vw, 104px); }
 .hero-in { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(40px, 7vw, 104px); align-items: center; }
 .hero h1 { font-size: calc(clamp(3.2rem, 1.6rem + 5vw, 6rem) * var(--hero-fs)); font-weight: var(--dw-800); line-height: calc(0.96 * var(--d-lh)); letter-spacing: calc(-0.05em * var(--trk)); }
-.hero-role { position: relative; margin-top: var(--s6); padding-left: 38px; font-family: var(--display); font-size: clamp(1.15rem, 1rem + 0.5vw, 1.4rem); font-weight: var(--dw-600); line-height: 1.35; letter-spacing: calc(-0.015em * var(--trk)); color: var(--ink); max-width: 34ch; font-size-adjust: var(--d-adj); }
-.hero-role::before { content: ""; position: absolute; left: 0; top: 0.68em; width: 24px; height: 2px; border-radius: 2px; background: var(--accent); }
-.hero-role b { font-weight: var(--dw-700); color: var(--accent-text); }
+.hero-lead { position: relative; margin-top: var(--s6); padding-left: 38px; font-family: var(--display); font-size: clamp(1.3rem, 1.05rem + 0.8vw, 1.75rem); font-weight: var(--dw-700); line-height: 1.28; letter-spacing: calc(-0.025em * var(--trk)); color: var(--ink); max-width: 30ch; font-size-adjust: var(--d-adj); }
+.hero-lead::before { content: ""; position: absolute; left: 0; top: 0.64em; width: 24px; height: 2px; border-radius: 2px; background: var(--accent); }
+.hero-title { margin-top: var(--s5); padding-left: 38px; font-size: 14.5px; font-weight: 600; line-height: 1.45; color: var(--ink-mute); }
+.hero-title b { font-weight: 700; color: var(--accent-text); }
 .hero-pitch { margin-top: var(--s4); max-width: 44ch; font-size: clamp(1.05rem, 1rem + 0.25vw, 1.18rem); color: var(--ink-soft); padding-left: 38px; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: var(--s8); }
 .hero .actions { padding-left: 38px; }
@@ -258,6 +259,10 @@ main { min-height: calc(100vh - var(--nav-h)); }
 .cred dt { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mute); }
 .cred dd { margin: 8px 0 0; font-family: var(--display); font-size: 16px; font-weight: var(--dw-600); color: var(--ink); line-height: 1.4; letter-spacing: calc(-0.01em * var(--trk)); font-size-adjust: var(--d-adj); }
 
+.cred-num > div { display: flex; flex-direction: column-reverse; justify-content: flex-end; }
+.cred-num dd { margin: 0; font-size: clamp(1.3rem, 1rem + 0.85vw, 1.65rem); font-weight: var(--dw-800); line-height: calc(1.1 * var(--d-lh)); letter-spacing: calc(-0.03em * var(--trk)); }
+.cred-num dt { margin-top: 8px; font-size: 14px; font-weight: 400; letter-spacing: 0; text-transform: none; line-height: 1.45; color: var(--ink-soft); }
+.ops-num { margin-top: var(--s7); }
 .hsec { padding-top: var(--section); }
 .hsec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--s6); margin-bottom: var(--s8); flex-wrap: wrap; }
 .hsec-title { font-size: clamp(1.9rem, 1.3rem + 1.9vw, 2.9rem); font-weight: var(--dw-800); line-height: calc(1.08 * var(--d-lh)); letter-spacing: calc(-0.04em * var(--trk)); }
@@ -273,6 +278,8 @@ main { min-height: calc(100vh - var(--nav-h)); }
 .pillar h3 { font-size: clamp(1.3rem, 1.1rem + 0.5vw, 1.55rem); letter-spacing: calc(-0.025em * var(--trk)); line-height: 1.2; }
 .pillar p { margin-top: var(--s3); color: var(--ink-soft); max-width: 60ch; }
 .pillar .more { margin-top: var(--s4); }
+.story-text p { color: var(--ink-soft); font-size: clamp(1.05rem, 1rem + 0.2vw, 1.15rem); line-height: 1.7; max-width: 62ch; }
+.story-text p + p { margin-top: var(--s6); }
 
 /* veyra feature */
 .vf { margin-top: var(--section); background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: var(--section) 0; }
@@ -713,8 +720,8 @@ body > footer nav a:hover { color: var(--ink); }
 }
 @media (max-width: 560px) {
   .hero h1 { font-size: calc(clamp(2.7rem, 12.5vw, 3.4rem) * var(--hero-fs-sm, var(--hero-fs))); }
-  .hero-pitch, .hero .actions { padding-left: 0; }
-  .hero-role { font-size: 1.12rem; }
+  .hero-pitch, .hero-title, .hero .actions { padding-left: 0; }
+  .hero-lead { font-size: 1.3rem; }
   .cred { grid-template-columns: 1fr; }
   .cred > div, .cred > div + div { padding: var(--s4) 0; border-left: 0; }
   .cred > div + div { border-top: 1px solid var(--line); }
@@ -848,8 +855,8 @@ body > footer nav a:hover { color: var(--ink); }
   .pcard.side .body { border-left: 0; border-top: 1px solid var(--line); padding: var(--s5) var(--s6) var(--s6); }
 }
 @media (max-width: 560px) {
-  .hero-role { padding-left: 0; padding-top: 18px; }
-  .hero-role::before { top: 0; }
+  .hero-lead { padding-left: 0; padding-top: 18px; }
+  .hero-lead::before { top: 0; }
   .duo .chain li { grid-template-columns: 1fr; }
   .duo .chain span.d { grid-column: 1; }
   .duo .st { padding: var(--s6) var(--s5); }
@@ -1143,8 +1150,8 @@ body > footer { border-top: 1px solid rgb(var(--on-deep-rgb) / 0.12); }
 .chain li.core .k, .ex-flow .k, .nh-fam .k, .ops-steps .n, .tl-item.is-now .tl-date, .edu-list li.top .date,
 .nh-mult .hi b { color: var(--bronze); }
 /* big numbers are large text, so they take the brighter metal (3:1 and up) */
-.science-stats dd, .stats dd, .nh-big b, .principles .n { color: var(--metal-ui); }
-.kicker .dot, .hero-role::before { background: var(--metal-ui); }
+.science-stats dd, .stats dd, .cred-num dd, .nh-big b, .principles .n { color: var(--metal-ui); }
+.kicker .dot, .hero-lead::before { background: var(--metal-ui); }
 .principles li { border-top-color: var(--metal-ui); }
 .vid-tag::before { background: var(--metal); }
 /* dark screenshots and video sit in neat frames with a soft shadow */
@@ -1234,8 +1241,9 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
     <div class="wrap hero-in" data-sc-in>
       <div data-sc-stagger>
         <h1 tabindex="-1">Matthew Lowe</h1>
-        <p class="hero-role">Co-owner &amp; Engineering and Operations Director at&nbsp;<b>Veyra</b></p>
-        <p class="hero-pitch">A full-stack developer who cares about the business as much as the code.</p>
+        <p class="hero-lead">A full-stack developer who cares about the business as much as the code.</p>
+        <p class="hero-pitch">I find the slow, manual parts of a business and build the systems that take them away.</p>
+        <p class="hero-title">Co-owner &amp; Engineering and Operations Director at&nbsp;<b>Veyra</b></p>
         <div class="actions">
           <a class="btn btn-primary" href="#veyra">Veyra case study <svg class="icon"><use href="#i-arrow"/></svg></a>
           <a class="btn btn-ghost" href="assets/Matthew-Lowe-CV.pdf" download="Matthew-Lowe-CV.pdf"><svg class="icon"><use href="#i-down"/></svg> Download CV</a>
@@ -1248,25 +1256,44 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
   </div>
 
   <div class="wrap">
-    <dl class="cred reveal" data-sc-stagger>
-      <div><dt>Veyra is backed by</dt><dd>Innovate UK</dd></div>
-      <div><dt>Built with researchers at</dt><dd>King's College London and Imperial College London</dd></div>
-      <div><dt>Protected by</dt><dd>A European patent application</dd></div>
-      <div><dt>Education</dt><dd>MSc Computer Games, Distinction</dd></div>
+    <dl class="cred cred-num reveal" data-sc-stagger>
+      <div><dt>126 orders and 2,000+ lines in one live record</dt><dd class="tnum">27 factories</dd></div>
+      <div><dt>Built automatically in the system's first week</dt><dd class="tnum">41 purchase orders</dd></div>
+      <div><dt>Checked against what was agreed</dt><dd class="tnum">138 contracts</dd></div>
+      <div><dt>Of admin saved every week</dt><dd class="tnum">About 15 hours</dd></div>
     </dl>
+
+    <!-- my story -->
+    <div class="hsec do story">
+      <div class="do-intro reveal">
+        <h2 class="hsec-title">My story</h2>
+      </div>
+      <div class="story-text">
+        <p class="reveal">I started out making games, and it taught me to think in systems. When I joined my family's import business, I set up its online retail side on Amazon UK, then built the system it now runs on: one live record of 126 orders across 27 factories, purchase orders that build themselves, every contract checked against what was agreed, and emails drafted in each person's own style for them to send. It saves the team about 15 hours a week.</p>
+        <p class="reveal">I was fortunate that Veyra's founder took me on to lead game development. The team had spent weeks trying to get the game running on iPad. I worked it out over a weekend and had a build out in my first week. As I kept delivering, I was given more responsibility, and since October 2026 I've co-owned the company as Engineering and Operations Director. Veyra is where my two passions meet: games and business.</p>
+      </div>
+    </div>
 
     <!-- what I do -->
     <div class="hsec do">
       <div class="do-intro reveal">
         <h2 class="hsec-title">What I do</h2>
-        <p class="hsec-lede">I build games, apps and the systems behind them and I like working closely with design to make them something people want to use.</p>
+        <p class="hsec-lede">I look at how a business runs, find what slows it down, and build the systems that fix it.</p>
       </div>
       <div class="pillars">
+        <div class="pillar reveal">
+          <span class="pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="6" rx="1.5"/><rect x="14" y="14" width="7" height="6" rx="1.5"/><rect x="14" y="4" width="7" height="6" rx="1.5"/><path d="M10 7h4M17.5 10v4"/></svg></span>
+          <div>
+            <h3>Selling on Amazon, and the systems behind it</h3>
+            <p>I run the online retail side of my family's import business on Amazon UK, from sourcing new products at factories overseas to shipping containers to the warehouse, and I built the systems it runs on, which save the team about 15 hours a week. AI drafts and checks the routine work but people make the calls.</p>
+            <a class="more" href="#operations">See operations <svg class="icon"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
         <div class="pillar reveal">
           <span class="pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M7.5 10.5v4M5.5 12.5h4"/><circle cx="15.5" cy="11.5" r="0.6" fill="currentColor"/><circle cx="17.5" cy="13.5" r="0.6" fill="currentColor"/></svg></span>
           <div>
             <h3>Veyra and games</h3>
-            <p>I led game development on the short game tasks students play to measure skills like working memory, attention and planning. Now I lead the technical side, from the front end students see to the science and data behind it.</p>
+            <p>I led game development on the twelve short game tasks students play to measure skills like working memory, attention and planning. Now I lead the technical side, from the front end students see to the science and data behind it.</p>
             <a class="more" href="#veyra">Veyra case study <svg class="icon"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
@@ -1276,14 +1303,6 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
             <h3>Front end and gamification</h3>
             <p>Gamification is where my interests meet. A task that feels like a game gets better data and a student who wants to come back, so I spend a lot of time on the small things like feedback, timing and how it feels to play.</p>
             <a class="more" href="#games">See the games <svg class="icon"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-        <div class="pillar reveal">
-          <span class="pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="6" rx="1.5"/><rect x="14" y="14" width="7" height="6" rx="1.5"/><rect x="14" y="4" width="7" height="6" rx="1.5"/><path d="M10 7h4M17.5 10v4"/></svg></span>
-          <div>
-            <h3>Selling on Amazon, and the systems behind it</h3>
-            <p>I run the online retail side of my family's import business on Amazon UK, from sourcing new products at factories overseas to shipping containers to the warehouse, and I built the systems it runs on. AI drafts and checks the routine work but people make the calls.</p>
-            <a class="more" href="#operations">See operations <svg class="icon"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
       </div>
@@ -1338,11 +1357,11 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
   </div>
 
   <div class="wrap">
-    <!-- selected projects -->
+    <!-- projects I've led -->
     <div class="hsec">
       <div class="hsec-head reveal">
         <div>
-          <h2 class="hsec-title">Selected projects</h2>
+          <h2 class="hsec-title">Projects I've led</h2>
           <p class="hsec-lede">Games in Unreal Engine 5 and Unity, each built around a system I wanted to learn properly.</p>
         </div>
         <a class="more" href="#games">All games <svg class="icon"><use href="#i-arrow"/></svg></a>
@@ -1354,9 +1373,9 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
           <span class="vid-tag">Gameplay</span>
         </div>
         <div class="body">
-          <div class="body-top"><span class="label">MSc project · Unreal Engine 5.7 · C++</span></div>
+          <div class="body-top"><span class="label">Unreal Engine 5.7 · C++</span></div>
           <h3>Project Extract</h3>
-          <p>A single-player tactical extraction shooter and my MSc Computer Games project. You rescue a captive and fight out to extraction alongside an AI companion you command, against an enemy force paced by a director system.</p>
+          <p>A single-player tactical extraction shooter. You rescue a captive and fight out to extraction alongside an AI companion you command, against an enemy force paced by a director system.</p>
           <span class="more">See the project <svg class="icon"><use href="#i-arrow"/></svg></span>
         </div>
       </a>
@@ -1416,7 +1435,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
       <div class="card st reveal">
         <span class="label">Operations · Mar 2026 to present</span>
         <h2>The Amazon side of my family's import business</h2>
-        <p>I run it, and I built the systems it runs on: a web dashboard with iPhone and Mac apps the team uses every day for orders, shipping and email.</p>
+        <p>I run it, and I built the systems it runs on: a web dashboard with iPhone and Mac apps the team uses every day for orders, shipping and email. Less time chasing and re-typing, so the team spends it on decisions.</p>
         <ol class="chain" aria-label="How a routine email goes out" data-sc-stagger>
           <li><span class="k">Coming in</span><b>Sales, stock and containers</b><span class="d">Forecasts and live container tracking</span></li>
           <li class="core"><span class="k">One place</span><b>One live order record</b><span class="d">Every order from the factory to the warehouse</span></li>
@@ -1745,6 +1764,12 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
       <div><dt class="label">Used by</dt><dd>The whole team, every day</dd></div>
       <div><dt class="label">Runs on</dt><dd>Web, iPhone, Mac and Teams</dd></div>
     </dl>
+    <dl class="cred cred-num ops-num reveal" data-sc-stagger>
+      <div><dt>126 orders and 2,000+ lines in one live record</dt><dd class="tnum">27 factories</dd></div>
+      <div><dt>Built automatically in the system's first week</dt><dd class="tnum">41 purchase orders</dd></div>
+      <div><dt>Checked against what was agreed</dt><dd class="tnum">138 contracts</dd></div>
+      <div><dt>Of admin saved every week</dt><dd class="tnum">About 15 hours</dd></div>
+    </dl>
 
     <div class="section">
       <div class="section-head">
@@ -1940,7 +1965,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
           <img class="still" src="assets/extract/extract-105.jpg" width="1600" height="1000" alt="Project Extract: the player at a door in the compound, rifle raised">
         </div>
         <div class="body">
-          <div class="meta"><span class="label">MSc project · Unreal Engine 5.7 · C++</span></div>
+          <div class="meta"><span class="label">Unreal Engine 5.7 · C++</span></div>
           <h2>Project Extract</h2>
           <p>A single-player tactical extraction shooter. Rescue a captive and fight out alongside an AI companion you command, against eight enemy archetypes coordinated into squads.</p>
           <div class="chips" style="margin-top:var(--s2)"><span class="chip">AI companion</span><span class="chip">Enemy squads</span><span class="chip">Playable demo</span></div>
@@ -1958,7 +1983,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
       <a class="card game-card" href="#games/noah">
         <div class="media"><img src="assets/noah/noah-cover.jpg" width="1280" height="720" alt="Path of Noah: towers around a castle on a tile-built level"></div>
         <div class="body">
-          <div class="meta"><span class="label">Unity · C# · MSc group project</span><span class="label tnum">2026</span></div>
+          <div class="meta"><span class="label">Unity · C# · Team of four · Project lead</span><span class="label tnum">2026</span></div>
           <h2>Path of Noah</h2>
           <p>A tower defence game I led for a team of four, making 329 of its 673 commits. I built nine towers in four element families, the damage type chart, six enemy types, the waves and the tile-built levels.</p>
           <div class="chips" style="margin-top:var(--s2)"><span class="chip">Project lead</span><span class="chip">Type chart</span><span class="chip">Seven levels</span></div>
@@ -1999,8 +2024,8 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
       <div class="game-head-row" style="margin-top:var(--s5)">
         <div>
           <h1 class="page-title" style="margin-top:0" tabindex="-1">Project Extract</h1>
-          <p class="page-lede">A single-player tactical extraction shooter in Unreal Engine 5.7, and my MSc Computer Games project. The player infiltrates a compound, rescues a captive and fights out to extraction alongside an AI companion they command.</p>
-          <div class="chips game-meta"><span class="chip">Unreal Engine 5.7</span><span class="chip">C++</span><span class="chip">MSc Computer Games</span><span class="chip">Distinction</span></div>
+          <p class="page-lede">A single-player tactical extraction shooter in Unreal Engine 5.7. The player infiltrates a compound, rescues a captive and fights out to extraction alongside an AI companion they command.</p>
+          <div class="chips game-meta"><span class="chip">Unreal Engine 5.7</span><span class="chip">C++</span><span class="chip">Single-player</span></div>
         </div>
         <div class="actions" style="margin-top:0">
           <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1RTdumU_N8UCUPB1CNHYd_Ug6O-ugH5Oz" target="_blank" rel="noopener">Play the demo <svg class="icon"><use href="#i-out"/></svg></a>
@@ -2015,7 +2040,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
         <img class="still" src="assets/extract/extract-105.jpg" width="1600" height="1000" alt="Project Extract: the player at a door in the compound, rifle raised">
         <span class="vid-tag">Gameplay highlights</span>
       </div>
-      <figcaption class="ex-cap">Forty seconds of gameplay, with no sound. My full MSc presentation is further down the page.</figcaption>
+      <figcaption class="ex-cap">Forty seconds of gameplay, with no sound. My full presentation is further down the page.</figcaption>
     </figure>
 
     <div class="section">
@@ -2056,7 +2081,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
     <div class="wrap">
       <div class="section">
         <div class="section-head">
-          <p class="kicker"><span class="dot"></span>From my MSc presentation</p>
+          <p class="kicker"><span class="dot"></span>From my presentation</p>
           <h2 class="section-title" style="margin-top:var(--s3)">How I built it: directing a team of AI agents</h2>
           <p class="section-sub">I built Project Extract by directing a team of AI agents, with the calls left to me. This is what worked, what didn't, and where it stopped being useful.</p>
         </div>
@@ -2131,7 +2156,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
       <div class="section">
         <blockquote class="ex-quote">
           <p>&ldquo;I would build my next game this way without hesitation, and I have already carried several of these habits into my industry job.&rdquo;</p>
-          <footer>Matthew Lowe, MSc presentation</footer>
+          <footer>Matthew Lowe, project presentation</footer>
         </blockquote>
       </div>
     </div>
@@ -2142,13 +2167,13 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
       <div class="present">
         <div>
           <h2 class="section-title">Watch the full presentation</h2>
-          <p class="section-sub">My recorded MSc presentation, about eleven minutes with sound. It covers the game and how I built it with a team of AI agents.</p>
+          <p class="section-sub">My recorded presentation, about eleven minutes with sound. It covers the game and how I built it with a team of AI agents.</p>
           <div class="ex-links">
             <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1RTdumU_N8UCUPB1CNHYd_Ug6O-ugH5Oz" target="_blank" rel="noopener">Play the demo <svg class="icon"><use href="#i-out"/></svg></a>
             <a class="btn btn-ghost" href="https://github.com/MJL1106/ProjectExtract" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> Source code</a>
           </div>
         </div>
-        <div class="video" id="present-box"><button type="button" data-present="assets/extract/extract-presentation-720p.mp4" aria-label="Play my full MSc presentation, 11 minutes, with sound">
+        <div class="video" id="present-box"><button type="button" data-present="assets/extract/extract-presentation-720p.mp4" aria-label="Play my full presentation, 11 minutes, with sound">
           <img src="assets/extract/extract-198.jpg" alt="" loading="lazy"><span class="play"><svg class="icon"><use href="#i-play"/></svg> Watch the full presentation</span></button></div>
       </div>
       <div class="pager">
@@ -2168,8 +2193,8 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
       <div class="game-head-row" style="margin-top:var(--s5)">
         <div>
           <h1 class="page-title" style="margin-top:0" tabindex="-1">Path of Noah</h1>
-          <p class="page-lede">A tower defence game on modular, tile-built levels, made in Unity as a Queen Mary MSc group project with a team of four. I led the project and built its core systems: the towers, upgrades, damage, enemies, waves and level building.</p>
-          <div class="chips game-meta"><span class="chip">Unity</span><span class="chip">C#</span><span class="chip">MSc group project</span><span class="chip">Team of four</span><span class="chip">Project lead</span></div>
+          <p class="page-lede">A tower defence game on modular, tile-built levels, made in Unity with a team of four. I led the project and built its core systems: the towers, upgrades, damage, enemies, waves and level building.</p>
+          <div class="chips game-meta"><span class="chip">Unity</span><span class="chip">C#</span><span class="chip">Team of four</span><span class="chip">Project lead</span></div>
         </div>
       </div>
     </div>
@@ -2189,7 +2214,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
           <div><dt>Team</dt><dd>Four developers</dd></div>
           <div><dt>Built</dt><dd>Oct 2025 to Jan 2026</dd></div>
           <div><dt>Engine</dt><dd>Unity and C#</dd></div>
-          <div><dt>Course</dt><dd>MSc, Queen Mary</dd></div>
+          <div><dt>Role</dt><dd>Project lead</dd></div>
         </dl>
       </div>
     </div>
@@ -2425,7 +2450,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
         <h3 class="doc-h">Projects</h3>
         <div class="proj"><h4>Veyra, Innovate UK Smart Grant <span>Jun 2025 to present</span></h4><p>Innovate UK Smart funding backs the R&amp;D behind Veyra, game-based cognitive assessment and intervention for secondary schools, now in use in UK schools.</p></div>
         <div class="proj"><h4>Day 1, school life simulation <span>2026</span></h4><p>A school day in Unreal Engine 5 and the playable demo for our Epic MegaGrants application.</p></div>
-        <div class="proj"><h4><a class="link" href="#games/extract">Project Extract</a>, MSc project <span>2026</span></h4><p>A first person shooter in Unreal Engine 5 and C++ built around an AI companion character and shaped by rounds of playtesting.</p></div>
+        <div class="proj"><h4><a class="link" href="#games/extract">Project Extract</a> <span>2026</span></h4><p>A first person shooter in Unreal Engine 5 and C++ built around an AI companion character and shaped by rounds of playtesting.</p></div>
         <div class="proj"><h4><a class="link" href="#games/atlas">Atlas: Defender of Dungeons</a> <span>Unreal Engine 5</span></h4><p>A dungeon RPG built on Unreal's Gameplay Ability System.</p></div>
         <div class="proj"><h4><a class="link" href="#games/afterthefall">After the Fall</a> <span>Unreal Engine 5</span></h4><p>A post-apocalyptic adventure game with third person shooting, a full climbing system and custom enemy AI.</p></div>
         <div class="proj"><h4><a class="link" href="#games/towerblitz">Tower Blitz Battleground</a> <span>Unity 6, 2025</span></h4><p>An arcade tower defence game in C# with several tower types, a level creation system and object pooling.</p></div>
@@ -2786,7 +2811,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
     const pres = e.target.closest("[data-present]");
     if (pres) {
       const box = pres.parentElement;
-      box.innerHTML = `<video controls autoplay playsinline preload="none" src="${pres.dataset.present}" aria-label="My MSc presentation on Project Extract"></video>`;
+      box.innerHTML = `<video controls autoplay playsinline preload="none" src="${pres.dataset.present}" aria-label="My presentation on Project Extract"></video>`;
       box.querySelector("video").play().catch(() => {});
       return;
     }
