@@ -24,7 +24,17 @@
 <meta name="twitter:title" content="Matthew Lowe | Engineering and Operations Director at Veyra">
 <meta name="twitter:description" content="Full-stack developer building games, apps and the systems behind them. Co-owner of Veyra, a cognitive assessment platform for schools.">
 <meta name="twitter:image" content="https://matthewlowedev.com/assets/og-image.png">
-<script>document.documentElement.classList.add("js");</script>
+<script>
+(() => {
+  /* .sc arms the scroll motion's hidden states. Without IntersectionObserver and Web
+     Animations, or if the motion script fails before it marks itself ready, nothing hides. */
+  const root = document.documentElement;
+  root.classList.add("js");
+  if (!("IntersectionObserver" in window) || !Element.prototype.animate) return;
+  root.classList.add("sc");
+  document.addEventListener("DOMContentLoaded", () => { if (!root.classList.contains("sc-ready")) root.classList.remove("sc"); });
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
@@ -220,11 +230,6 @@ main { min-height: calc(100vh - var(--nav-h)); }
 .bullets li { position: relative; padding-left: 20px; color: var(--ink-soft); }
 .bullets li + li { margin-top: 10px; }
 .bullets li::before { content: ""; position: absolute; left: 1px; top: 0.66em; width: 6px; height: 6px; border-radius: 1.5px; background: var(--bronze); transform: rotate(45deg); }
-
-/* reveal on scroll: opacity and transform only */
-.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 560ms var(--ease), transform 640ms var(--ease); }
-.js .reveal.is-in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .js .reveal { transform: none; transition: opacity 300ms linear; } }
 
 /* ---------------------------------------------------------------- home */
 .hero { padding: clamp(56px, 8vw, 112px) 0 clamp(64px, 8vw, 104px); }
@@ -1154,29 +1159,30 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
 /* phone: the Veyra band headline sets in three lines */
 @media (max-width: 560px) { .vf .wrap { container-type: inline-size; } .vf .hsec-title { font-size: min(1.8rem, 7.9cqi); } }
 
-/* ------------------------------------------------ Overview scroll motion
-   After ScrollCraft's flow devices: staggered reveals once on entry, gentle depth
-   on the two photographs, and the Veyra band widening into place. Transform and
-   opacity only; nothing pins or adds scroll. Reduced motion keeps the fades only. */
-.js [data-sc-stagger] > * {
-  opacity: 0; transform: translateY(10px);
-  transition: opacity 520ms var(--ease), transform 640ms var(--ease);
-  transition-delay: calc(var(--i, 0) * 70ms + 90ms);
-}
-.js .is-in[data-sc-stagger] > *, .js .is-in [data-sc-stagger] > * { opacity: 1; transform: none; }
-.js .hero .portrait { opacity: 0; transform: translateY(16px); transition: opacity 760ms var(--ease) 240ms, transform 900ms var(--ease) 240ms; }
-.js .hero .is-in .portrait { opacity: 1; transform: none; }
-/* depth: the photo drifts inside its frame, the bronze plate trails behind the portrait */
-[data-sc-depth] { will-change: transform; transform: scale(1.06); }
+/* ------------------------------------------------ scroll motion, every page
+   After ScrollCraft's flow devices: reveals play each time a block comes into view,
+   staggered when several arrive together, and reset once it has fully left, so they
+   replay both ways and on every route. Hero media drift inside their frames and the
+   full-width bands widen into place, both tracking scroll position. The motion script
+   animates opacity and the translate and scale properties only, so hover transforms
+   are untouched; nothing pins or adds scroll. Reduced motion keeps the fades only.
+   Hidden states need .sc, so everything shows if the script never runs. */
+.sc .reveal:not(.is-in),
+.sc [data-sc-in]:not(.is-in) [data-sc-item],
+.sc [data-sc-in]:not(.is-in) [data-sc-stagger] > * { opacity: 0; }
+/* depth: media drift inside their frames, the bronze plate trails behind the portrait */
+.sc [data-sc-depth] { will-change: translate; scale: 1.06; }
 .portrait::before { transform: translate(18px, calc(18px + var(--sc-plate, 0px))); }
-/* the Veyra band: its ground widens to full bleed as it arrives */
-.vf { position: relative; isolation: isolate; }
-.vf-bg { position: absolute; inset: -1px 0; z-index: -1; background: var(--deep); transform-origin: 50% 0; will-change: transform; }
+/* bands: their ground widens to full bleed as they arrive */
+.vf, .sc .agents-band { position: relative; isolation: isolate; }
 .vf { background: transparent; }
+.vf-bg, .sc-band { position: absolute; inset: -1px 0; z-index: -1; transform-origin: 50% 0; will-change: transform; }
+.vf-bg { background: var(--deep); }
+.sc .agents-band { background: transparent; border-color: transparent; }
+.sc-band { background: var(--band); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 @media (prefers-reduced-motion: reduce) {
-  .js [data-sc-stagger] > *, .js .hero .portrait { transform: none; transition: opacity 300ms linear; }
-  [data-sc-depth] { transform: none; will-change: auto; }
-  .vf-bg { transform: none; will-change: auto; }
+  .sc [data-sc-depth] { scale: none; will-change: auto; }
+  .vf-bg, .sc-band { will-change: auto; }
 }
 </style>
 </head>
@@ -1235,7 +1241,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
           <a class="btn btn-ghost" href="assets/Matthew-Lowe-CV.pdf" download="Matthew-Lowe-CV.pdf"><svg class="icon"><use href="#i-down"/></svg> Download CV</a>
         </div>
       </div>
-      <figure class="portrait">
+      <figure class="portrait" data-sc-item data-sc-delay="240" data-sc-dur="900" data-sc-dist="16">
         <div class="portrait-frame"><img data-sc-depth src="assets/portrait.webp" width="900" height="1200" alt="Matthew smiling, seated at a table with his hands clasped"></div>
       </figure>
     </div>
@@ -2810,78 +2816,195 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
 })();
 </script>
 <script>
-/* Overview scroll motion, after ScrollCraft's flow devices (github.com/nateherkai/scroll-craft):
-   reveals fire once on entry and stagger when several arrive together; depth and the
-   band are driven from one scroll value on one rAF; nothing pins, nothing adds scroll. */
+/* Scroll motion on every page, after ScrollCraft's flow devices (github.com/nateherkai/scroll-craft).
+   Reveals play each time a block comes into view and stagger when several arrive together.
+   A block resets only once it has fully left the viewport, so the motion replays scrolling
+   either way and on every route, with nothing flickering at the edges. Depth on hero media
+   and the bands widening into place are driven from scroll position on one rAF. Opacity,
+   translate and scale only; nothing pins, nothing adds scroll. */
 (() => {
-  if (!("IntersectionObserver" in window)) {
-    document.querySelectorAll(".reveal, [data-sc-in]").forEach((el) => el.classList.add("is-in"));
-    return;
-  }
   const root = document.documentElement;
-  root.classList.add("js");
-  const calm = matchMedia("(prefers-reduced-motion: reduce)");
-  const STAGGER_MS = 80;
-  const DEPTH_SCALE = 1.06;
-  const PLATE_RATE = 0.05, PLATE_MAX = 26;
-  const BAND_FROM = 0.955, BAND_RUN = 0.6;
-  const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
-  const ease = (x) => { x = clamp(x, 0, 1); return x * x * (3 - 2 * x); };
+  if (!root.classList.contains("sc")) return;
+  try {
+    const calm = matchMedia("(prefers-reduced-motion: reduce)");
+    const EASE = getComputedStyle(root).getPropertyValue("--ease").trim() || "ease-out";
+    const BLOCK = { dist: 14, dur: 640 };
+    const ITEM = { dist: 10, dur: 600, lead: 90, step: 70, max: 10 };
+    const BATCH_STEP = 80, BATCH_MAX = 6;
+    const CALM_DUR = 300, CALM_PACE = 0.5;
+    const ENTER_MARGIN = "0px 0px -8% 0px", ROUTE_GRACE_MS = 400, END_SLACK = 4;
+    /* a block resets only once it is further out than its own reveal travel, so the
+       offset it starts from can never push it out of view and loop show and reset */
+    const LEAVE_MARGIN = `${BLOCK.dist * 3}px 0px`;
+    const DEPTH_SCALE = 1.06, DEPTH_RANGE = 0.25;
+    const PLATE_RATE = 0.05, PLATE_MAX = 26;
+    const BAND_FROM = 0.955, BAND_RUN = 0.6;
+    const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
+    const ease = (x) => { x = clamp(x, 0, 1); return x * x * (3 - 2 * x); };
+    const byDoc = (a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
 
-  document.querySelectorAll("[data-sc-stagger]").forEach((g) => {
-    [...g.children].forEach((kid, n) => kid.style.setProperty("--i", String(n)));
-  });
+    /* What each page gets. The Overview is marked up by hand; every other page, the rendered
+       game pages included, is tagged from these lists so its markup stays as written.
+       Heads stagger their lines in; grid and list items reveal one by one, so a row cascades;
+       blocks reveal whole, with any group inside them staggering its children. */
+    const SCOPE = '.page:not([data-page="home"]) ';
+    const HEADS = [".page-head .wrap", ".game-head"];
+    const HEAD_ITEMS = ".kicker, .crumbs, .page-title, .page-lede, .game-meta, .subtabs, .actions > *";
+    const ITEMS = [
+      ".shots-12 > figure", ".world > figure", ".ex-gallery > figure", ".gallery > figure",
+      ".games-grid > .game-card", ".tasks > .task", ".sys-list > .sys-row", ".ops-steps > li",
+      ".principles > li", ".does > div", ".attempts > *", ".ex-cards > *", ".nh-sys > *",
+      ".c-rows > *", ".explore-list > *", ".contact-grid > .now", ".doc-main > *", ".doc-side-in > *",
+      ".split > *", ".nh-lead > *", ".nh-lead-wrap > *", ".nh-game > *", ".ex-intro > *",
+      ".loop > *", ".overview > *", ".present > *"
+    ];
+    const BLOCKS = [
+      ".fact-row", ".note", ".section-head", ".science", ".diagram-card", ".ex-hero", ".ex-cap",
+      ".stats", ".org", ".ex-quote", ".pager", ".also", ".nh-towers", ".nh-skills", ".explore > .label"
+    ];
+    const GROUPS = [".fact-row", ".stats", ".science-stats", ".bullets", ".loop-steps", ".org-groups", ".nh-facts"];
+    const DEPTH = [".video > button > img", ".ex-hero > video", ".ex-hero > .still", ".game-card.feature .media > video", ".game-card.feature .media > .still"];
+    /* Atlas renders into the shared game page and is being rewritten, so it is left as written */
+    const ATLAS = /^#\/?games\/atlas(\/|$)/;
+    const atlasShown = (el) => ATLAS.test(location.hash) && el.closest("#game-root");
+    const all = (list) => [...document.querySelectorAll(list.map((s) => SCOPE + s).join(","))].filter((el) => !atlasShown(el));
+    const free = (el) => !el.closest(".reveal, [data-sc-in]") && !el.querySelector(".reveal, [data-sc-in]");
 
-  const io = new IntersectionObserver((entries) => {
-    const hits = entries.filter((e) => e.isIntersecting).map((e) => e.target)
-      .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
-    hits.forEach((el, n) => {
-      if (n && !calm.matches) {
-        el.style.transitionDelay = n * STAGGER_MS + "ms";
-        setTimeout(() => { el.style.transitionDelay = ""; }, 900 + n * STAGGER_MS);
-      }
-      el.classList.add("is-in");
-      io.unobserve(el);
-    });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-  document.querySelectorAll(".reveal, [data-sc-in]").forEach((el) => io.observe(el));
-
-  const home = document.querySelector('[data-page="home"]');
-  const portrait = home.querySelector(".portrait");
-  const depth = [...home.querySelectorAll("[data-sc-depth]")];
-  const band = home.querySelector(".vf");
-  const bandBg = band.querySelector(".vf-bg");
-  let queued = false;
-
-  function frame() {
-    queued = false;
-    if (calm.matches || !home.classList.contains("is-active")) return;
-    const vh = innerHeight;
-    depth.forEach((img) => {
-      const r = img.parentElement.getBoundingClientRect();
-      if (r.bottom < -vh * 0.25 || r.top > vh * 1.25) return;
-      const p = clamp((r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2), -1, 1);
-      const travel = ((DEPTH_SCALE - 1) / 2) * r.height;
-      img.style.transform = `translate3d(0, ${(-p * travel).toFixed(2)}px, 0) scale(${DEPTH_SCALE})`;
-    });
-    portrait.style.setProperty("--sc-plate", Math.min(scrollY * PLATE_RATE, PLATE_MAX).toFixed(2) + "px");
-    const b = band.getBoundingClientRect();
-    if (b.bottom > 0 && b.top < vh * 1.1) {
-      const k = BAND_FROM + (1 - BAND_FROM) * ease((vh - b.top) / (vh * BAND_RUN));
-      bandBg.style.transform = `scaleX(${k.toFixed(4)})`;
+    function tag() {
+      all(HEADS).forEach((h) => {
+        if (!free(h)) return;
+        h.setAttribute("data-sc-in", "");
+        h.querySelectorAll(HEAD_ITEMS).forEach((k) => k.setAttribute("data-sc-item", ""));
+      });
+      [ITEMS, BLOCKS].forEach((list) => all(list).forEach((el) => { if (free(el) && !el.hidden) el.classList.add("reveal"); }));
+      all(GROUPS).forEach((g) => g.setAttribute("data-sc-stagger", ""));
+      all(DEPTH).forEach((m) => m.setAttribute("data-sc-depth", ""));
+      all([".agents-band"]).forEach((b) => {
+        if (b.querySelector(":scope > .sc-band")) return;
+        const bg = document.createElement("div");
+        bg.className = "sc-band";
+        bg.setAttribute("aria-hidden", "true");
+        b.prepend(bg);
+      });
     }
+
+    /* reveals: Web Animations from hidden to the element's own resting style */
+    const live = new Map();
+    function fade(el, delay, dur, dy) {
+      const from = { opacity: 0, offset: 0 };
+      if (dy) from.translate = `0 ${dy}px`;
+      return el.animate([from], { duration: dur, delay, easing: calm.matches ? "linear" : EASE, fill: "backwards" });
+    }
+    function show(el, wait, dir) {
+      const still = calm.matches, pace = still ? CALM_PACE : 1;
+      const anims = [];
+      el.classList.add("is-in");
+      if (el.classList.contains("reveal")) anims.push(fade(el, wait, still ? CALM_DUR : BLOCK.dur, still ? 0 : dir * BLOCK.dist));
+      el.querySelectorAll("[data-sc-stagger] > *, [data-sc-item]").forEach((k, n) => {
+        const d = k.dataset;
+        const delay = wait + pace * (d.scDelay ? +d.scDelay : ITEM.lead + Math.min(n, ITEM.max) * ITEM.step);
+        const dur = still ? CALM_DUR : d.scDur ? +d.scDur : ITEM.dur;
+        anims.push(fade(k, delay, dur, still ? 0 : dir * (d.scDist ? +d.scDist : ITEM.dist)));
+      });
+      live.set(el, anims);
+    }
+    function hide(el) {
+      el.classList.remove("is-in");
+      (live.get(el) || []).forEach((a) => a.cancel());
+      live.delete(el);
+    }
+
+    /* enter a little inside the viewport, reset only once fully out: the gap stops edge flicker */
+    let lastY = scrollY, scrollDir = 1, routedAt = 0, queued = false;
+    const seen = new Set();
+    const enter = new IntersectionObserver((entries) => {
+      const dir = performance.now() - routedAt < ROUTE_GRACE_MS ? 1 : scrollDir;
+      const pace = calm.matches ? CALM_PACE : 1;
+      entries.filter((e) => e.isIntersecting && !e.target.classList.contains("is-in"))
+        .map((e) => e.target).sort(byDoc)
+        .forEach((el, n) => show(el, Math.min(n, BATCH_MAX) * BATCH_STEP * pace, dir));
+    }, { rootMargin: ENTER_MARGIN });
+    const leave = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { seen.add(e.target); return; }
+        seen.delete(e.target);
+        hide(e.target);
+      });
+      queue();
+    }, { rootMargin: LEAVE_MARGIN });
+    /* at the very bottom of a page, whatever is on screen shows even inside the enter margin */
+    function settleEnd() {
+      [...seen].filter((el) => !el.classList.contains("is-in")).sort(byDoc)
+        .forEach((el, n) => show(el, Math.min(n, BATCH_MAX) * BATCH_STEP, 1));
+    }
+
+    const watched = new Set();
+    function watch() {
+      watched.forEach((el) => {
+        if (el.isConnected) return;
+        enter.unobserve(el); leave.unobserve(el);
+        watched.delete(el); seen.delete(el); hide(el);
+      });
+      document.querySelectorAll(".reveal, [data-sc-in]").forEach((el) => {
+        if (watched.has(el)) return;
+        watched.add(el); enter.observe(el); leave.observe(el);
+      });
+    }
+
+    /* scroll-linked depth and bands, read then write, on the active page only */
+    const portrait = document.querySelector('[data-page="home"] .portrait');
+    let depth = [], bands = [];
+    function collect() {
+      depth = [...document.querySelectorAll("[data-sc-depth]")];
+      bands = [...document.querySelectorAll(".vf-bg, .sc-band")].map((bg) => ({ el: bg.parentElement, bg }));
+    }
+    function drift(r, vh) {
+      if (!r.height || r.bottom < -vh * DEPTH_RANGE || r.top > vh * (1 + DEPTH_RANGE)) return null;
+      const p = clamp((r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2), -1, 1);
+      return (-p * ((DEPTH_SCALE - 1) / 2) * r.height).toFixed(2);
+    }
+    const widen = (r, vh) => (BAND_FROM + (1 - BAND_FROM) * ease((vh - r.top) / (vh * BAND_RUN))).toFixed(4);
+    function frame() {
+      queued = false;
+      const atEnd = innerHeight + scrollY >= root.scrollHeight - END_SLACK;
+      const page = document.querySelector(".page.is-active");
+      if (!calm.matches && page) {
+        const vh = innerHeight;
+        const moves = depth.filter((m) => page.contains(m)).map((m) => [m, drift(m.parentElement.getBoundingClientRect(), vh)]);
+        const widths = bands.filter((b) => page.contains(b.el)).map((b) => [b.bg, widen(b.el.getBoundingClientRect(), vh)]);
+        moves.forEach(([m, y]) => { if (y !== null) m.style.translate = `0 ${y}px`; });
+        widths.forEach(([bg, k]) => { bg.style.transform = `scaleX(${k})`; });
+        if (portrait && page.contains(portrait)) portrait.style.setProperty("--sc-plate", Math.min(scrollY * PLATE_RATE, PLATE_MAX).toFixed(2) + "px");
+      }
+      if (atEnd) settleEnd();
+    }
+    function queue() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
+    function rest() {
+      depth.forEach((m) => { m.style.translate = ""; });
+      bands.forEach((b) => { b.bg.style.transform = ""; });
+      if (portrait) portrait.style.removeProperty("--sc-plate");
+    }
+
+    /* rendered game pages, video embeds and the skill drawer change the DOM: tag and watch again */
+    let refreshing = false;
+    function refresh() { refreshing = false; tag(); watch(); collect(); queue(); }
+    new MutationObserver(() => { if (!refreshing) { refreshing = true; queueMicrotask(refresh); } })
+      .observe(document.querySelector("main"), { childList: true, subtree: true });
+
+    addEventListener("scroll", () => {
+      const y = scrollY;
+      if (y !== lastY) { scrollDir = y > lastY ? 1 : -1; lastY = y; }
+      queue();
+    }, { passive: true });
+    addEventListener("resize", queue);
+    addEventListener("hashchange", () => { routedAt = performance.now(); queue(); });
+    calm.addEventListener("change", () => (calm.matches ? rest() : queue()));
+    refresh();
+    root.classList.add("sc-ready");
+  } catch (err) {
+    root.classList.remove("sc");
+    console.error(err);
   }
-  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(frame); } };
-  function reset() {
-    depth.forEach((img) => { img.style.transform = ""; });
-    portrait.style.removeProperty("--sc-plate");
-    bandBg.style.transform = "";
-  }
-  addEventListener("scroll", queue, { passive: true });
-  addEventListener("resize", queue);
-  addEventListener("hashchange", () => requestAnimationFrame(queue));
-  calm.addEventListener("change", () => (calm.matches ? reset() : queue()));
-  queue();
 })();
 </script>
 <script>
