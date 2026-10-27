@@ -1173,6 +1173,73 @@ body > footer nav a:hover { color: var(--ink); }
   .at-ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+/* ------------------------------------------------ operations: the framework */
+.ops-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: clamp(32px, 5vw, 72px); align-items: end; }
+.ops-facts { margin: 0; }
+.ops-first { padding-top: var(--s4); }
+.ops-fw-card { padding: var(--s8) var(--s7) var(--s7); }
+.ops-fw { --fw-gap: var(--s6); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--fw-gap); }
+.ops-fw li { display: grid; align-content: start; }
+.ops-fw .top { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--s3); }
+.ops-fw .n { font-family: var(--display); font-size: clamp(2.3rem, 1.7rem + 1.3vw, 3rem); font-weight: var(--dw-800); line-height: calc(1 * var(--d-lh)); letter-spacing: calc(-0.04em * var(--trk)); color: var(--metal-ui); font-size-adjust: var(--d-adj); }
+.ops-fw svg { width: 24px; height: 24px; color: var(--accent-text); flex: none; }
+.ops-fw .rail { position: relative; display: block; height: 14px; margin: var(--s4) 0 var(--s5); }
+.ops-fw .rail::before { content: ""; position: absolute; z-index: 1; left: 0; top: 1px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface); }
+.ops-fw .rail::after { content: ""; position: absolute; left: 6px; right: calc(-1 * var(--fw-gap)); top: 7px; height: 1.5px; background: var(--accent-line); }
+.ops-fw li:last-child .rail::after { right: 0; }
+.ops-fw li:nth-child(4) .rail::before { background: var(--accent); }
+.ops-fw h3 { font-size: 1.08rem; letter-spacing: calc(-0.015em * var(--trk)); line-height: 1.3; }
+.ops-fw p { margin-top: var(--s2); font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
+.ops-fw-loop {
+  position: relative; height: 26px; margin: var(--s6) calc((100% - 4 * var(--s6)) / 5 - 7px) 0 6px;
+  border: 1.5px dashed rgb(var(--accent-rgb) / 0.6); border-top: 0; border-radius: 0 0 14px 14px;
+}
+.ops-fw-loop::before { content: ""; position: absolute; left: -6.5px; top: -8px; border: 5.5px solid transparent; border-top: 0; border-bottom: 8px solid rgb(var(--accent-rgb) / 0.6); }
+.section-head + .ops-num { margin-top: 0; }
+.ops-sub { margin-top: var(--s9); }
+.ops-subhead { margin-bottom: var(--s5); }
+.ops-h3 { font-size: clamp(1.15rem, 1.05rem + 0.35vw, 1.3rem); letter-spacing: calc(-0.02em * var(--trk)); line-height: 1.25; }
+.ops-built { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s4); }
+.ops-group { padding: var(--s5) var(--s5) var(--s2); box-shadow: var(--edge), var(--e1); }
+.ops-gk { display: flex; align-items: baseline; gap: 10px; padding-bottom: var(--s3); font-family: var(--display); font-size: 15px; font-weight: var(--dw-700); line-height: 1.3; color: var(--ink); border-bottom: 2px solid var(--metal-ui); font-size-adjust: var(--d-adj); }
+.ops-gk .n { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--bronze); }
+.ops-group .does { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.ops-group .does > div:first-child { border-top: 0; }
+.ops-group .does dd { font-size: 14.5px; }
+.ops-steps.is-compact { gap: var(--s3); }
+.ops-steps.is-compact li { padding: var(--s4); box-shadow: var(--edge), var(--e1); row-gap: 4px; }
+.ops-steps.is-compact li:not(:last-child)::after { top: 27px; right: calc(-1 * var(--s3) - 1px); width: calc(var(--s3) + 2px); }
+.ops-steps.is-compact svg { width: 22px; height: 22px; }
+.ops-steps.is-compact h3 { margin-top: var(--s2); font-size: 15px; }
+.ops-steps.is-compact p { font-size: 13.5px; }
+.ops-fits { margin-top: var(--s4); max-width: 60ch; padding-left: var(--s5); border-left: 2px solid var(--metal-ui); font-family: var(--display); font-size: clamp(1.12rem, 1.02rem + 0.4vw, 1.32rem); font-weight: var(--dw-600); line-height: 1.5; letter-spacing: calc(-0.01em * var(--trk)); color: var(--ink); font-size-adjust: var(--d-adj); }
+@media (min-width: 861px) {
+  .ops-facts { grid-template-columns: minmax(0, 1fr); }
+  .ops-facts > div { padding: var(--s4) var(--s5); }
+  .ops-facts > div + div { border-left: 0; border-top: 1px solid var(--line); }
+}
+@media (max-width: 1020px) {
+  .ops-fw-card { padding: var(--s4) var(--s6); }
+  .ops-fw { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .ops-fw li { grid-template-columns: 64px minmax(0, 1fr); column-gap: var(--s4); padding: var(--s5) 0; }
+  .ops-fw li + li { border-top: 1px solid var(--line); }
+  .ops-fw .top { grid-row: span 2; align-self: start; }
+  .ops-fw .top svg, .ops-fw .rail, .ops-fw-loop { display: none; }
+  .ops-fw .n { font-size: 2.2rem; }
+  .ops-built { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .ops-head { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .ops-fw-card { padding: var(--s2) var(--s5); }
+  .ops-fw li { grid-template-columns: 48px minmax(0, 1fr); column-gap: var(--s3); }
+  .ops-fw .n { font-size: 1.8rem; }
+  .ops-built { grid-template-columns: minmax(0, 1fr); }
+  .ops-steps.is-compact li { padding: var(--s3) var(--s4); }
+  .ops-steps.is-compact h3 { margin-top: 0; }
+}
+
 /* ------------------------------------------------ pro palettes: deep bands, metal accent */
 :root { --metal-rule: rgb(var(--metal-rgb) / 0.55); --metal-rule-soft: rgb(var(--metal-rgb) / 0.38); }
 /* no gradients: flat colour only */
@@ -1808,173 +1875,102 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
 <!-- ========================================================== OPERATIONS -->
 <section class="page" data-page="operations" data-title="Operations | Matthew Lowe">
   <div class="page-head grid-bg">
-    <div class="wrap">
-      <p class="kicker"><span class="dot"></span>Operations · Mar 2026 to present</p>
-      <h1 class="page-title" tabindex="-1">From the factory to the warehouse</h1>
-      <p class="page-lede"><strong>I run the online retail side of my family's import business on Amazon UK, and I built the systems it runs on.</strong> It's the operations half of what I do: sourcing, costing, launches, stock and shipping, and the tools the team uses every day to run them.</p>
+    <div class="wrap ops-head">
+      <div>
+        <p class="kicker"><span class="dot"></span>Operations</p>
+        <h1 class="page-title" tabindex="-1">How I make a business run better</h1>
+        <p class="page-lede"><strong>Every business has work that waits, gets re-typed or gets chased.</strong> I find it and build the systems that take it away. This is how I do it, and the import business I run on Amazon UK is where I've proved it.</p>
+      </div>
+      <dl class="fact-row ops-facts">
+        <div><dt class="label">My role</dt><dd>Running our Amazon UK business</dd></div>
+        <div><dt class="label">The business</dt><dd>My family's import business</dd></div>
+        <div><dt class="label">Used by</dt><dd>The whole team, every day</dd></div>
+        <div><dt class="label">Runs on</dt><dd>Web, iPhone, Mac and Teams</dd></div>
+      </dl>
     </div>
   </div>
   <div class="wrap">
-    <dl class="fact-row" style="margin:0">
-      <div><dt class="label">My role</dt><dd>Running our Amazon UK business</dd></div>
-      <div><dt class="label">The business</dt><dd>My family's import business</dd></div>
-      <div><dt class="label">Used by</dt><dd>The whole team, every day</dd></div>
-      <div><dt class="label">Runs on</dt><dd>Web, iPhone, Mac and Teams</dd></div>
-    </dl>
-    <dl class="cred cred-num ops-num reveal" data-sc-stagger>
-      <div><dt>126 orders and 2,000+ lines in one live record</dt><dd class="tnum">27 factories</dd></div>
-      <div><dt>Built automatically in the system's first week</dt><dd class="tnum">41 purchase orders</dd></div>
-      <div><dt>Checked against what was agreed</dt><dd class="tnum">138 contracts</dd></div>
-      <div><dt>Of admin saved every week</dt><dd class="tnum">About 15 hours</dd></div>
-    </dl>
-
-    <div class="section">
+    <div class="section ops-first">
       <div class="section-head">
-        <h2 class="section-title">What I run</h2>
-        <p class="section-sub">Every product goes through the same five stages, and I look after each of them.</p>
+        <h2 class="section-title">The framework</h2>
       </div>
-      <ol class="ops-steps">
-        <li><div class="top"><span class="n">01</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 3.8 5.8 3.8 9s-1.2 6.2-3.8 9c-2.6-2.8-3.8-5.8-3.8-9S9.4 5.8 12 3z"/></svg></div><h3>Sourcing</h3><p>Finding new products at factories overseas and agreeing prices.</p></li>
-        <li><div class="top"><span class="n">02</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7h7M8.5 11h1M12 11h1M8.5 14.5h1M12 14.5h1M15.5 11v6.5M8.5 17.5h1M12 17.5h1"/></svg></div><h3>Costing and margins</h3><p>Costing each product and keeping a close eye on the margin.</p></li>
-        <li><div class="top"><span class="n">03</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.5 1.2-2 4-2 6 2 0 4.8-.5 6-2"/><path d="M9 15l-3-3c1.5-4.5 5.5-9 13-9 0 7.5-4.5 11.5-9 13z"/><circle cx="14.5" cy="9.5" r="1.6"/></svg></div><h3>Product launches</h3><p>Getting new products listed, launched and selling on Amazon.</p></li>
-        <li><div class="top"><span class="n">04</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><rect x="5" y="11" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="15" y="3" width="4" height="17" rx="1"/></svg></div><h3>Stock planning and reorders</h3><p>Planning stock and deciding what to reorder, and when.</p></li>
-        <li><div class="top"><span class="n">05</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16h18l-2.2 4H5.2z"/><rect x="5" y="10" width="5" height="6" rx="0.6"/><rect x="11" y="10" width="5" height="6" rx="0.6"/><rect x="8" y="5" width="5" height="5" rx="0.6"/></svg></div><h3>Shipping</h3><p>Shipping containers from the factory to the warehouse.</p></li>
-      </ol>
+      <div class="card ops-fw-card">
+        <ol class="ops-fw">
+          <li><div class="top"><span class="n">01</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="4" r="2.2"/><path d="M8.2 18H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.8"/></svg></div><span class="rail" aria-hidden="true"></span><h3>Map how the work really flows.</h3><p>Follow a job from start to finish and find where it waits, gets re-typed or gets chased.</p></li>
+          <li><div class="top"><span class="n">02</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v13c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-13"/><path d="M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></svg></div><span class="rail" aria-hidden="true"></span><h3>One source of truth.</h3><p>Put it in one live record that every person and tool reads from, so everyone works from the same numbers.</p></li>
+          <li><div class="top"><span class="n">03</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6z"/></svg></div><span class="rail" aria-hidden="true"></span><h3>Automate the routine.</h3><p>Let software do the repeat work: building documents, drafting messages, checking figures.</p></li>
+          <li><div class="top"><span class="n">04</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.9 3.1-6.5 7-6.5s7 2.6 7 6.5"/></svg></div><span class="rail" aria-hidden="true"></span><h3>People make the calls.</h3><p>The system prepares and checks. A person decides and presses send.</p></li>
+          <li><div class="top"><span class="n">05</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><path d="M5 16l4.5-4.5 3.5 3 6-6.5"/><path d="M15 8h4v4"/></svg></div><span class="rail" aria-hidden="true"></span><h3>Measure, then go again.</h3><p>Track the time saved and the mistakes caught, then find the next bottleneck.</p></li>
+        </ol>
+        <div class="ops-fw-loop" aria-hidden="true"></div>
+      </div>
     </div>
 
     <div class="section">
       <div class="section-head">
-        <h2 class="section-title">What I built for it</h2>
-        <p class="section-sub">One live order record sits at the centre. Everything else reads from it, and nothing goes out without a person.</p>
+        <h2 class="section-title">Proved on an import business</h2>
       </div>
-      <div class="card diagram-card">
-        <div class="diagram-top">
-          <span class="label">How it fits together</span>
-          <div class="legend"><span><i></i>Updates live</span><span><i class="solid"></i>Checked by a person</span></div>
-        </div>
-        <svg class="diagram diagram-wide" viewBox="0 0 1100 470" role="img" aria-labelledby="dg-t dg-d">
-          <title id="dg-t">How the systems fit together</title>
-          <desc id="dg-d">Sales and stock data pipelines and live container tracking feed one live order record. The record feeds purchase orders and AI email drafts. Both reach the team's screens on web, iPhone, Mac and Teams, where a person reviews them, and nothing is sent until a person presses send.</desc>
-          <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" style="fill:rgb(var(--ink-rgb) / 0.5)"/></marker></defs>
-          <g class="group"><rect x="10" y="26" width="236" height="418" rx="14"/></g>
-          <text class="e-label" x="26" y="50">COMING IN</text>
-          <path class="flow" d="M228 131 C 266 131, 266 222, 300 222"/>
-          <path class="flow" d="M228 355 C 266 355, 266 248, 300 248"/>
-          <path class="flow" d="M530 210 C 566 210, 566 106, 600 106"/>
-          <path class="flow" d="M530 260 C 566 260, 566 367, 600 367"/>
-          <path class="edge" d="M810 106 L 866 106" marker-end="url(#ah)"/>
-          <path class="edge" d="M810 352 C 842 352, 840 176, 866 176" marker-end="url(#ah)"/>
-          <path class="edge" d="M975 194 L 975 298" marker-end="url(#ah)"/>
-          <text class="e-label" x="987" y="252">for review</text>
-          <g class="node"><rect x="28" y="66" width="200" height="130" rx="10"/>
-            <text class="n-key" x="46" y="92">forecasts</text>
-            <text class="n-title" x="46" y="116">Sales and stock</text>
-            <text class="n-sub" x="46" y="140">Data pipelines turned</text>
-            <text class="n-sub" x="46" y="158">into forecasts that show</text>
-            <text class="n-sub" x="46" y="176">when to reorder</text></g>
-          <g class="node"><rect x="28" y="290" width="200" height="130" rx="10"/>
-            <text class="n-key" x="46" y="316">shipping</text>
-            <text class="n-title" x="46" y="340">Container tracking</text>
-            <text class="n-sub" x="46" y="364">Every container followed</text>
-            <text class="n-sub" x="46" y="382">live, from the factory</text>
-            <text class="n-sub" x="46" y="400">to the warehouse</text></g>
-          <g class="node core"><rect x="300" y="160" width="230" height="150" rx="12"/>
-            <text class="n-key" x="320" y="188" style="fill:var(--accent-text)">one place for everything</text>
-            <text class="n-title" x="320" y="216" style="font-size:17px">One live order record</text>
-            <text class="n-sub" x="320" y="242">Every order in one place,</text>
-            <text class="n-sub" x="320" y="260">from the factory to the</text>
-            <text class="n-sub" x="320" y="278">warehouse</text></g>
-          <g class="node"><rect x="600" y="44" width="210" height="124" rx="10"/>
-            <text class="n-key" x="618" y="70">orders</text>
-            <text class="n-title" x="618" y="94">Purchase orders</text>
-            <text class="n-sub" x="618" y="118">Built straight from</text>
-            <text class="n-sub" x="618" y="136">the live order record</text></g>
-          <g class="node"><rect x="600" y="302" width="210" height="130" rx="10"/>
-            <text class="n-key" x="618" y="328">drafts</text>
-            <text class="n-title" x="618" y="352">Routine emails</text>
-            <text class="n-sub" x="618" y="376">In each person's own</text>
-            <text class="n-sub" x="618" y="394">style, every figure</text>
-            <text class="n-sub" x="618" y="412">checked against the record</text></g>
-          <g class="node"><rect x="870" y="44" width="210" height="150" rx="10"/>
-            <text class="n-key" x="888" y="70">the team</text>
-            <text class="n-title" x="888" y="94">The team's screens</text>
-            <text class="n-sub" x="888" y="118">Web, iPhone and Mac apps</text>
-            <text class="n-sub" x="888" y="136">and a Teams assistant</text>
-            <text class="n-sub" x="888" y="160">Microsoft 365 sign-in,</text>
-            <text class="n-sub" x="888" y="178">a workspace each</text></g>
-          <g class="node human"><rect x="870" y="302" width="210" height="130" rx="10"/>
-            <text class="n-key" x="888" y="328">approval</text>
-            <circle cx="1050" cy="340" r="9" fill="none" style="stroke:var(--ink-soft)" stroke-width="1.4"/>
-            <path d="M1034 368 c0 -10 7 -15 16 -15 s16 5 16 15" fill="none" style="stroke:var(--ink-soft)" stroke-width="1.4"/>
-            <text class="n-title" x="888" y="380">Presses send</text>
-            <text class="n-sub" x="888" y="404">Nothing is sent</text>
-            <text class="n-sub" x="888" y="422">before that</text></g>
-        </svg>
-
-        <svg class="diagram diagram-tall" viewBox="0 0 360 980" role="img" aria-labelledby="dg-t2">
-          <title id="dg-t2">How the systems fit together: data pipelines and live container tracking feed the live order record, which feeds purchase orders and AI email drafts; both reach the team's screens, and a person presses send.</title>
-          <defs><marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" style="fill:rgb(var(--ink-rgb) / 0.5)"/></marker></defs>
-          <path class="flow" d="M92 150 C 92 190, 180 190, 180 230"/>
-          <path class="flow" d="M268 150 C 268 190, 180 190, 180 230"/>
-          <path class="flow" d="M150 380 C 150 414, 92 414, 92 446"/>
-          <path class="flow" d="M210 380 C 210 414, 268 414, 268 446"/>
-          <path class="edge" d="M92 588 C 92 620, 150 620, 150 648" marker-end="url(#ah2)"/>
-          <path class="edge" d="M268 588 C 268 620, 210 620, 210 648" marker-end="url(#ah2)"/>
-          <path class="edge" d="M180 782 L 180 848" marker-end="url(#ah2)"/>
-          <text class="e-label" x="192" y="820">for review</text>
-          <g class="node"><rect x="6" y="20" width="168" height="130" rx="10"/>
-            <text class="n-key" x="20" y="44">forecasts</text>
-            <text class="n-title" x="20" y="68">Sales and stock</text>
-            <text class="n-sub" x="20" y="92">Forecasts that</text>
-            <text class="n-sub" x="20" y="110">show when to</text>
-            <text class="n-sub" x="20" y="128">reorder</text></g>
-          <g class="node"><rect x="186" y="20" width="168" height="130" rx="10"/>
-            <text class="n-key" x="200" y="44">shipping</text>
-            <text class="n-title" x="200" y="68">Containers</text>
-            <text class="n-sub" x="200" y="92">Tracked live, from</text>
-            <text class="n-sub" x="200" y="110">factory to</text>
-            <text class="n-sub" x="200" y="128">warehouse</text></g>
-          <g class="node core"><rect x="40" y="230" width="280" height="150" rx="12"/>
-            <text class="n-key" x="60" y="258" style="fill:var(--accent-text)">one place for everything</text>
-            <text class="n-title" x="60" y="286" style="font-size:17px">One live order record</text>
-            <text class="n-sub" x="60" y="312">Every order in one place,</text>
-            <text class="n-sub" x="60" y="330">from the factory to the</text>
-            <text class="n-sub" x="60" y="348">warehouse</text></g>
-          <g class="node"><rect x="6" y="446" width="168" height="142" rx="10"/>
-            <text class="n-key" x="20" y="470">orders</text>
-            <text class="n-title" x="20" y="494">Purchase orders</text>
-            <text class="n-sub" x="20" y="518">Built straight</text>
-            <text class="n-sub" x="20" y="536">from the live</text>
-            <text class="n-sub" x="20" y="554">order record</text></g>
-          <g class="node"><rect x="186" y="446" width="168" height="142" rx="10"/>
-            <text class="n-key" x="200" y="470">drafts</text>
-            <text class="n-title" x="200" y="494">Routine emails</text>
-            <text class="n-sub" x="200" y="518">In each person's</text>
-            <text class="n-sub" x="200" y="536">own style, every</text>
-            <text class="n-sub" x="200" y="554">figure checked</text></g>
-          <g class="node"><rect x="40" y="652" width="280" height="130" rx="10"/>
-            <text class="n-key" x="60" y="678">the team</text>
-            <text class="n-title" x="60" y="702">The team's screens</text>
-            <text class="n-sub" x="60" y="726">Web, iPhone and Mac apps and</text>
-            <text class="n-sub" x="60" y="744">a Teams assistant. Microsoft</text>
-            <text class="n-sub" x="60" y="762">365 sign-in, a workspace each</text></g>
-          <g class="node human"><rect x="70" y="852" width="220" height="110" rx="10"/>
-            <text class="n-key" x="88" y="878">approval</text>
-            <circle cx="258" cy="892" r="9" fill="none" style="stroke:var(--ink-soft)" stroke-width="1.4"/>
-            <path d="M242 920 c0 -10 7 -15 16 -15 s16 5 16 15" fill="none" style="stroke:var(--ink-soft)" stroke-width="1.4"/>
-            <text class="n-title" x="88" y="906">Presses send</text>
-            <text class="n-sub" x="88" y="932">Nothing is sent before that</text></g>
-        </svg>
-      </div>
-
-      <dl class="does does-6" style="margin-top:var(--s6)">
-        <div><dt>The team's screens</dt><dd>A web dashboard with iPhone and Mac apps the team uses every day, and an assistant for the team in Microsoft Teams</dd></div>
-        <div><dt>One order record</dt><dd>One live record of every order from the factory to the warehouse, with live container tracking</dd></div>
-        <div><dt>Purchase orders</dt><dd>Purchase orders built straight from the live order record</dd></div>
-        <div><dt>Email drafts</dt><dd>AI drafts routine emails in each person's own writing style and checks every figure against the order record. Nothing is sent until a person presses send</dd></div>
-        <div><dt>A workspace each</dt><dd>Microsoft 365 sign-in with a separate workspace for each person</dd></div>
-        <div><dt>Forecasts</dt><dd>Sales and stock data pipelines with forecasting for reorders</dd></div>
+      <dl class="cred cred-num ops-num reveal" data-sc-stagger>
+        <div><dt>126 orders and 2,000+ lines in one live record</dt><dd class="tnum">27 factories</dd></div>
+        <div><dt>Built automatically in the system's first week</dt><dd class="tnum">41 purchase orders</dd></div>
+        <div><dt>Checked against what was agreed</dt><dd class="tnum">138 contracts</dd></div>
+        <div><dt>Of admin saved every week</dt><dd class="tnum">About 15 hours</dd></div>
       </dl>
+
+      <div class="ops-sub">
+        <div class="section-head ops-subhead">
+          <h3 class="ops-h3">What I built for it</h3>
+        </div>
+        <div class="ops-built">
+          <div class="card ops-group">
+            <p class="ops-gk"><span class="n">02</span>One source of truth</p>
+            <dl class="does">
+              <div><dt>One order record</dt><dd>One live record of every order from the factory to the warehouse, with live container tracking</dd></div>
+            </dl>
+          </div>
+          <div class="card ops-group">
+            <p class="ops-gk"><span class="n">03</span>Automate the routine</p>
+            <dl class="does">
+              <div><dt>Purchase orders</dt><dd>Purchase orders built straight from the live order record</dd></div>
+              <div><dt>Email drafts</dt><dd>AI drafts routine emails in each person's own writing style and checks every figure against the order record. Nothing is sent until a person presses send</dd></div>
+            </dl>
+          </div>
+          <div class="card ops-group">
+            <p class="ops-gk"><span class="n">04</span>People make the calls</p>
+            <dl class="does">
+              <div><dt>The team's screens</dt><dd>A web dashboard with iPhone and Mac apps the team uses every day, and an assistant for the team in Microsoft Teams</dd></div>
+              <div><dt>A workspace each</dt><dd>Microsoft 365 sign-in with a separate workspace for each person</dd></div>
+            </dl>
+          </div>
+          <div class="card ops-group">
+            <p class="ops-gk"><span class="n">05</span>Measure, then go again</p>
+            <dl class="does">
+              <div><dt>Forecasts</dt><dd>Sales and stock data pipelines with forecasting for reorders</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="ops-sub">
+        <div class="section-head ops-subhead">
+          <h3 class="ops-h3">What I run</h3>
+          <p class="section-sub">Every product goes through the same five stages, and I look after each of them.</p>
+        </div>
+        <ol class="ops-steps is-compact">
+          <li><div class="top"><span class="n">01</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 3.8 5.8 3.8 9s-1.2 6.2-3.8 9c-2.6-2.8-3.8-5.8-3.8-9S9.4 5.8 12 3z"/></svg></div><h3>Sourcing</h3><p>Finding new products at factories overseas and agreeing prices.</p></li>
+          <li><div class="top"><span class="n">02</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7h7M8.5 11h1M12 11h1M8.5 14.5h1M12 14.5h1M15.5 11v6.5M8.5 17.5h1M12 17.5h1"/></svg></div><h3>Costing and margins</h3><p>Costing each product and keeping a close eye on the margin.</p></li>
+          <li><div class="top"><span class="n">03</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.5 1.2-2 4-2 6 2 0 4.8-.5 6-2"/><path d="M9 15l-3-3c1.5-4.5 5.5-9 13-9 0 7.5-4.5 11.5-9 13z"/><circle cx="14.5" cy="9.5" r="1.6"/></svg></div><h3>Product launches</h3><p>Getting new products listed, launched and selling on Amazon.</p></li>
+          <li><div class="top"><span class="n">04</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><rect x="5" y="11" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="15" y="3" width="4" height="17" rx="1"/></svg></div><h3>Stock planning and reorders</h3><p>Planning stock and deciding what to reorder, and when.</p></li>
+          <li><div class="top"><span class="n">05</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16h18l-2.2 4H5.2z"/><rect x="5" y="10" width="5" height="6" rx="0.6"/><rect x="11" y="10" width="5" height="6" rx="0.6"/><rect x="8" y="5" width="5" height="5" rx="0.6"/></svg></div><h3>Shipping</h3><p>Shipping containers from the factory to the warehouse.</p></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2 class="section-title">Where else it fits</h2>
+        <p class="ops-fits">Anywhere work passes between people and systems: orders, bookings, reports, approvals. At <a href="#veyra">Veyra</a>, the same thinking keeps each task's score data consistent from the game to the teacher's dashboard.</p>
+      </div>
     </div>
 
     <div class="section">
@@ -3133,7 +3129,7 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
     const HEADS = [".page-head .wrap", ".game-head"];
     const HEAD_ITEMS = ".kicker, .crumbs, .page-title, .page-lede, .game-meta, .subtabs, .actions > *";
     const ITEMS = [
-      ".shots-12 > figure", ".world > figure", ".ex-gallery > figure", ".gallery > figure",
+      ".shots-12 > figure", ".world > figure", ".ex-gallery > figure", ".gallery > figure", ".ops-fw > li", ".ops-built > *",
       ".games-grid > .game-card", ".tasks > .task", ".sys-list > .sys-row", ".ops-steps > li",
       ".principles > li", ".does > div", ".attempts > *", ".ex-cards > *", ".nh-sys > *",
       ".c-rows > *", ".explore-list > *", ".contact-grid > .now", ".doc-main > *", ".doc-side-in > *",
