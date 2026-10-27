@@ -3203,11 +3203,15 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
         .map((e) => e.target).sort(byDoc)
         .forEach((el, n) => show(el, Math.min(n, BATCH_MAX) * BATCH_STEP * pace, dir));
     }, { rootMargin: ENTER_MARGIN });
+    /* reset only what drops off the bottom (or leaves with its page), so the motion plays scrolling down, never up */
     const leave = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) { seen.add(e.target); return; }
         seen.delete(e.target);
-        hide(e.target);
+        const r = e.boundingClientRect;
+        const offPage = r.width === 0 && r.height === 0;
+        const below = r.top >= (e.rootBounds ? e.rootBounds.bottom : innerHeight);
+        if (offPage || below) hide(e.target);
       });
       queue();
     }, { rootMargin: LEAVE_MARGIN });
@@ -3255,6 +3259,11 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
         widths.forEach(([bg, k]) => { bg.style.transform = `scaleX(${k})`; });
         if (portrait && page.contains(portrait)) portrait.style.setProperty("--sc-plate", Math.min(scrollY * PLATE_RATE, PLATE_MAX).toFixed(2) + "px");
       }
+      /* jumped past without being seen: settle in place, so nothing animates on the way back up */
+      if (page) {
+        const skipped = [...watched].filter((el) => !el.classList.contains("is-in") && page.contains(el) && el.getBoundingClientRect().bottom < 0);
+        skipped.forEach((el) => el.classList.add("is-in"));
+      }
       if (atEnd) settleEnd();
     }
     function queue() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
@@ -3276,7 +3285,11 @@ dialog.lightbox::backdrop { background: rgb(var(--ink-rgb) / 0.78); }
       queue();
     }, { passive: true });
     addEventListener("resize", queue);
-    addEventListener("hashchange", () => { routedAt = performance.now(); queue(); });
+    addEventListener("hashchange", () => {
+      routedAt = performance.now();
+      document.querySelectorAll(".page:not(.is-active) .is-in").forEach(hide);
+      queue();
+    });
     calm.addEventListener("change", () => (calm.matches ? rest() : queue()));
     refresh();
     root.classList.add("sc-ready");
